@@ -10,6 +10,7 @@ void store_stu(stu p)
     {
         fprintf(fp, "%-10d%s", p->num, p->name);
         p = p->next;
+	fputc('\n', fp);
     }
     printf("stored successfully!\n");
     return ;

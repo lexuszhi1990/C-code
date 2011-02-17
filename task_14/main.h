@@ -8,7 +8,6 @@ struct student
     char name[20];
     stu next;
 };
-static int total;
 extern void store_stu(stu);
 extern stu stu_malloc(stu);
 extern void stu_check(FILE *);

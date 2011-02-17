@@ -8,10 +8,10 @@ stu read_stu(void)
     int number = 0;
     char na[20];
     stu p = NULL;
-    fp = fopen("tex.txt","r+");
+    fp = fopen("tex.txt","a+");
     if (fp == NULL) 
     {
-        fp = fopen("tex.txt","t+");
+        fp = fopen("tex.txt","a+");
    //     stu_check(fp);
 	if (fp ==NULL) 
 	{
@@ -33,6 +33,8 @@ stu read_stu(void)
 		printf("file is empty!\n");
 	}
     stu head = p;
+	int i = 0;
+	printf("%ld\n",ftell(fp));
     while (fscanf(fp , "%d%s", &number, na) != EOF) 
     {
         p->next = malloc(sizeof(struct student));
@@ -40,12 +42,10 @@ stu read_stu(void)
         p->next->num = number;
         strncpy(p->next->name, na , 14);
         p->next->next = NULL;
-
         p = p->next;
     }
     printf("read successfully!\n");
     disp_stu(head);
     fclose(fp);
-    free(p);
     return head;
 }
