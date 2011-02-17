@@ -1,39 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "main.h"
 stu read_stu(void)
 {
-    FILE *fp;
+    FILE *fp = NULL;
     int number = 0;
     char na[20];
-    stu head = NULL;
     stu p = NULL;
-
-    fp = fopen("tex.txt","t+");
+    fp = fopen("tex.txt","r+");
     if (fp == NULL) 
     {
         fp = fopen("tex.txt","t+");
-        stu_check(fp);
-        fclose(fp);
-        return ;
+   //     stu_check(fp);
+	if (fp ==NULL) 
+	{
+		printf("file failed\n");
+		return ;
+	}
+	
     }
-
     if (fscanf(fp , "%d%s", &number, na) != EOF) 
     {
         p = malloc(sizeof(struct student));
-        stu_check(p);
+   //     stu_check(p);
         p->num = number;
         strncpy(p->name, na , 14);
         p->next = NULL;
-
-        head = p;
     }
+	else {
+		return NULL;
+		printf("file is empty!\n");
+	}
+    stu head = p;
     while (fscanf(fp , "%d%s", &number, na) != EOF) 
     {
         p->next = malloc(sizeof(struct student));
-        stu_check(p->next);
+//        stu_check(p->next);
         p->next->num = number;
         strncpy(p->next->name, na , 14);
         p->next->next = NULL;
 
         p = p->next;
     }
-    fclose(p);
+    printf("read successfully!\n");
+    disp_stu(head);
+    fclose(fp);
+    free(p);
+    return head;
 }

@@ -9,8 +9,8 @@ int main(int argc, const char *argv[])
     int  choice = 0;
     stu head ;
     head = stu_malloc(head);
-    strncpy(head->name, "grade 3 class 2",20);
-    head->num = 0;
+    head->num = -1;
+    strncpy(head->name,"",0);
     head->next = NULL;
     while( stop == 0)
     {
@@ -18,9 +18,10 @@ int main(int argc, const char *argv[])
         switch( choice )
         {
             case  1  : head = add_stu(head);break;
-            case  2  : del_stu(head);break;
+            case  2  : head = del_stu(head);break;
             case  3  : disp_stu(head);break;
             case  4  : store_stu(head);break;
+	    case  5  : head = read_stu();break;
             case  9  : stop = 1;break;
             default  : break;
         }

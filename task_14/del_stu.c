@@ -1,19 +1,20 @@
 #include <stdio.h>
 #include "main.h"
-void del_stu(stu p)
+stu del_stu(stu p)
 {
     printf("please input a stu num\n");
     int num;
     scanf("%d",&num);
     getchar();
     stu *pstu;
-    pstu = &(p->next);
+    pstu = &p;
     for (; *pstu; pstu = &(*pstu)->next) 
     {
         if ((*pstu)->num == num) 
         {
             (*pstu) = (*pstu)->next;
-             return ;
+		total--;
+             return p;
         }
     }
     printf("no this num\n");

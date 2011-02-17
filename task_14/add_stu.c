@@ -18,10 +18,11 @@ void same_stu(stu p, stu *pstu)
                 return ;
 }
 
-void suc_stu(stu p, stu head)
+void suc_stu(stu p)
 {
     printf("%d %s has be added\n", p->num,p->name);
-    head->num++; 
+    total++;
+     printf("%d\n", total);
 }
 stu get_stu(stu p)
 {
@@ -41,33 +42,33 @@ stu get_stu(stu p)
     return p;
 }
 
-void put_stu(stu head, stu p)
+stu put_stu(stu head, stu p)
 {
-    if (head->next == NULL) 
+    if (head->num == -1) 
     {
-        head->next = p;
-        suc_stu(p, head);
-        return ;
+	free(head);
+        suc_stu(p);
+        return p;
     }
     stu *pstu;
-    for (pstu = &head->next; *pstu; pstu = &(*pstu)->next) 
+    for (pstu = &head; *pstu; pstu = &(*pstu)->next) 
     {
         if (p->num ==(*pstu)->num) 
         {
             same_stu(p, pstu);
-            return ;
+            return head;
         }
         if ( p->num < (*pstu)->num) 
         {
             p->next = (*pstu);
             (*pstu) = p;
-            suc_stu(p, head);
-            return ;
+            suc_stu(p);
+            return head;
         }
     }
     (*pstu) = p;
-    suc_stu(p, head);
-    return ;
+    suc_stu(p);
+    return head;
 }
 
 stu add_stu( stu head )
@@ -79,6 +80,6 @@ stu add_stu( stu head )
         free(p);
         return head;
     }
-    put_stu(head, p);
+    head = put_stu(head, p);
     return head;
 }

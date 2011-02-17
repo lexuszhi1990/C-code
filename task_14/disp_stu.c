@@ -3,10 +3,11 @@
 void disp_stu(stu p)
 {
     printf("num\t\t\tname\n");
-    printf("total num:");
     while (p) 
     {
         printf("%-10d%s\n", p->num, p->name);
         p = p->next;
     }
+	printf("%-15s%s\n","class name:","class 2 grade 3");
+	printf("%-15s%d\n","total num :",total);
 }
