@@ -12,7 +12,7 @@ stu read_stu(void)
     if (fp == NULL) 
     {
         fp = fopen("tex.txt","a+");
-   //     stu_check(fp);
+        stu_check(fp);
 	if (fp ==NULL) 
 	{
 		printf("file failed\n");
@@ -23,7 +23,7 @@ stu read_stu(void)
     if (fscanf(fp , "%d%s", &number, na) != EOF) 
     {
         p = malloc(sizeof(struct student));
-   //     stu_check(p);
+        stu_check(p);
         p->num = number;
         strncpy(p->name, na , 14);
         p->next = NULL;
@@ -38,7 +38,7 @@ stu read_stu(void)
     while (fscanf(fp , "%d%s", &number, na) != EOF) 
     {
         p->next = malloc(sizeof(struct student));
-//        stu_check(p->next);
+        stu_check(p->next);
         p->next->num = number;
         strncpy(p->next->name, na , 14);
         p->next->next = NULL;

@@ -21,9 +21,8 @@ void same_stu(stu p, stu *pstu)
 void suc_stu(stu p)
 {
     printf("%d %s has be added\n", p->num,p->name);
-    total++;
-     printf("%d\n", total);
 }
+
 stu get_stu(stu p)
 {
     p = stu_malloc(p);
@@ -32,7 +31,6 @@ stu get_stu(stu p)
     getchar();
     if(p->num == 9) 
         {
-            free(p);
             return p;
         }
     printf("please input a student name\n");
@@ -44,9 +42,8 @@ stu get_stu(stu p)
 
 stu put_stu(stu head, stu p)
 {
-    if (head->num == -1) 
+    if (head == NULL) 
     {
-	free(head);
         suc_stu(p);
         return p;
     }

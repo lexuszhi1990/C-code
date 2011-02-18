@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
-void check(FILE *fp)
+void stu_check(void * p)
 {
-    if (fp == NULL) 
+    if (p == NULL) 
     {
         perror("error");
         exit(0);

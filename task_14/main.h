@@ -10,7 +10,7 @@ struct student
 };
 extern void store_stu(stu);
 extern stu stu_malloc(stu);
-extern void stu_check(FILE *);
+extern void stu_check(void * );
 extern int menu_list(void);
 extern stu add_stu(stu);
 extern stu del_stu(stu);
