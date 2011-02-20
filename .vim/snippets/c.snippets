@@ -1,6 +1,3 @@
-# test
-snippet ppp
-	xxxxxxxxxxx
 # main()
 snippet main
 	#include <stdio.h>
@@ -48,6 +45,7 @@ snippet if
 	{
 		${2:/* code */}
 	}
+	${3}
 snippet el
 	else {
 		${1}
@@ -108,22 +106,45 @@ snippet tde
 # unfortunately version this isn't as nice as TextMates's, given the lack of a
 # dynamic `...`
 snippet pr
-	printf("${1:%s}\n"${2});${3}
+	printf("${1:%s}\n",${2});
+	${3}
 # fprintf (again, this isn't as nice as TextMate's version, but it works)
 snippet fpr
-	fprintf(${1:stderr}, "${2:%s}\n"${3});${4}
+	fprintf(${1:stderr}, "${2:%s}\n"${3});
+	${4}
+snippet sca
+	scanf("%${1:s}",&${2});
+	${3}
 snippet .
 	[${1}]${2}
 snippet un
-	unsigned
-
-snippet xxx
-	${1:id} ${2:name}()
-	{
-		print hello
-		${3:/* peter */}
-	}
-snippet ()
-	${1:fun}(${2});
+	unsigned ${1} 
+snippet in
+	int ${1:c} = 0;
+	${2}
+snippet ini
+	${1:char} ${2:num} = 0'
 	${3}
+snippet check
+	if(${1:check} == NULL){
+		perror("error");
+		exit(0);
+	}
+	${2}
+snippet sh
+	#!/bin/bash
+	${1}
+snippet make
+	app:${1:.c}
+		gcc -0 $@ $^
+	${2}
+	target:$@
+	clean:
+		rm -rf $@
+		rm -rf ~*
+	.PHONY:clean
+snippet fu
+	${1:fun}(${2:});
+	${3}
+	
 	
