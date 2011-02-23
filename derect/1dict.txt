@@ -1,0 +1,21 @@
+#aasvogel
+Trans:n. 秃@鹰@之@一@种
+#abaci
+Trans:n. 算盘
+#aback
+Trans:ad. 向后地;朝后地
+#abacus
+Trans:n. 算盘
+#abaft
+Trans:ad. 向船尾@prep. 在...后
+#abalone
+Trans:n. 鲍鱼
+#abandon
+Trans:vt. 放弃;沉溺@n. 放任
+#abandoned
+Trans:a. 被抛弃的;自弃的;自甘堕落的
+#abandonee
+Trans:n. 被遗弃者;被委付者
+#abandoner
+Trans:n. 遗弃者;委付者
+
