@@ -1,4 +1,3 @@
-
 #include "stack.h"
 #include <stdio.h>
 
@@ -10,7 +9,7 @@ int mystack::getcount()
 
 mystack::mystack(int size) : max_size(2048), top(0), data(0)
 {
-	// max_size = 2048;
+	// max_size = 2048; 
 	data = new int[size];
 	
 	init();

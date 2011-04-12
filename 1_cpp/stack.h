@@ -1,4 +1,5 @@
 
+
 class mystack
 {
 public:
