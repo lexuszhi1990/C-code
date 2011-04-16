@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
 	char filename[256];
 	int filenamelen;
 	int filelen;
+	char* p;
 
 	struct sockaddr_in addr;
 	addr.sin_family = AF_INET;
@@ -30,16 +31,19 @@ int main(int argc, char* argv[])
 	
 while(1)
 {
-	recvlen = recv(clifd, buf, sizeof(buf), 0);
-	if(strcmp(buf, "##end##") == 0)
-	{
-		printf("end\n");
+	recvlen = recv(clifd, &filenamelen, sizeof(int), 0);
+	printf("filenamelen = %d\n", filenamelen);
+	if(filenamelen == 0xffffffff)
 		break;
-	}
-	strcpy(filename, buf);
-	printf("begin file %s\n", buf);
+	recvlen = recv(clifd, filename, filenamelen, 0);
 
-	strcat(filename, ".recv");
+// /home/akaedu/send/...   /home/akaedu/recv/....
+	p = strstr(filename, "/send/");
+	p++;
+	memcpy(p, "recv", 4);
+	printf("filename=%s\n", filename);
+	recvlen = recv(clifd, &filelen, sizeof(int), 0);
+	
 	file = open(filename, O_CREAT | O_RDWR, 0644);
 	if(file < 0)
 	{
@@ -47,12 +51,7 @@ while(1)
 		return 0;
 	}
 
-	filenamelen = strlen(buf);
-//	filelen = *((int*)(buf+filenamelen+1));
-	filelen = atoi(buf+filenamelen+1);	
 	printf("filelen=%d\n", filelen);
-	write(file, buf+filenamelen+5, recvlen-filenamelen-5);
-	filelen -= (recvlen - filenamelen - 5);
 
 	while(1)
 	{

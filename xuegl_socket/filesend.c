@@ -25,17 +25,17 @@ void dosend(int fd, int index)
 	int sendsize;
 	int filesize;
 	char tmp[32];
-
+	int filenamelen = strlen(filename)+1;
+	
+	send(fd, &filenamelen, sizeof(int), 0);
 	send(fd, filename, strlen(filename)+1, 0);
 
-	// get filename
+	// get filelen
 	fstat(file, &buf_stat);
 	printf("sizeof(buf_stat.st_size) =%d, filelen=%d\n", 
 			sizeof(buf_stat.st_size), (int)buf_stat.st_size);
 	filesize = buf_stat.st_size;
-
-	sprintf(tmp, "%d", filesize);
-	send(fd, tmp, strlen(tmp)+1, 0);
+	send(fd, &filesize, sizeof(filesize), 0);
 	
 	while(1)
 	{
@@ -68,7 +68,8 @@ void* send_file(void* p)
 	}
 
 	// send file end;
-	send(fd, "##end##", 8, 0);
+	index = 0xffffffff;
+	send(fd, &index, 4, 0);
 	recv(fd, &index, sizeof(index), 0);
 	close(fd);
 }
